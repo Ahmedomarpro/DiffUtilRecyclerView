@@ -1,4 +1,4 @@
-package com.ao.diffutiladapter
+package com.ao.diffutiladapter.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ao.diffutiladapter.utile.LoadingState
 import com.ao.diffutiladapter.databinding.ItemFooterBinding
 
 class FooterAdapter(private val onRetry: () -> Unit) :
@@ -48,7 +49,7 @@ class FooterAdapter(private val onRetry: () -> Unit) :
                         textViewError.visibility = View.INVISIBLE
                         progressBar.visibility = View.VISIBLE
                     }
-                } is LoadingState.Error->{
+                } is LoadingState.Error ->{
                 binding.run {
                     buttonRetry.visibility = View.VISIBLE
                     textViewError.visibility = View.VISIBLE

@@ -1,5 +1,6 @@
-package com.ao.diffutiladapter
+package com.ao.diffutiladapter.utile
 
+import com.ao.diffutiladapter.model.User
 import kotlinx.coroutines.delay
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -20,10 +21,12 @@ suspend fun getUsers(start: Int, limit: Int): List<User> {
     if (count.getAndIncrement() == 5 && throwError.compareAndSet(true,false)) {
         throw Error
     }
-        return List(limit){ User(
-            uid = start + it,
-            name = "Name$ ${start + it}",
-            email = "Email$ ${start + it}@AO.COM"
-            )}
+        return List(limit){
+            User(
+                uid = start + it,
+                name = "Name$ ${start + it}",
+                email = "Email$ ${start + it}@AO.COM"
+            )
+        }
 }
 

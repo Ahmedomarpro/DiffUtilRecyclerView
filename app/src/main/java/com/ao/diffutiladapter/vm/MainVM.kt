@@ -1,7 +1,11 @@
-package com.ao.diffutiladapter
+package com.ao.diffutiladapter.vm
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.*
+import com.ao.diffutiladapter.utile.LoadingState
+import com.ao.diffutiladapter.utile.getUsers
+import com.ao.diffutiladapter.model.User
+import com.ao.diffutiladapter.utile.PlaceholderState
 import kotlinx.coroutines.launch
 
 class MainVM : ViewModel() {
@@ -19,7 +23,11 @@ class MainVM : ViewModel() {
                 null -> emptyList()
                 PlaceholderState.Idle -> emptyList()
                 PlaceholderState.Loading -> listOf(LoadingState.Loading)
-                is PlaceholderState.Error -> listOf(LoadingState.Error(it.throwable))
+                is PlaceholderState.Error -> listOf(
+                    LoadingState.Error(
+                        it.throwable
+                    )
+                )
             }
         }
 
@@ -43,7 +51,12 @@ class MainVM : ViewModel() {
         viewModelScope.launch {
             loadingStateD.value = PlaceholderState.Loading
             val CurrentList = usersD.value ?: emptyList()
-            kotlin.runCatching { getUsers(start = CurrentList.size, limit = LIMIT) }
+            kotlin.runCatching {
+                getUsers(
+                    start = CurrentList.size,
+                    limit = LIMIT
+                )
+            }
                 .fold(
                     onSuccess = {
                         usersD.value = CurrentList + it

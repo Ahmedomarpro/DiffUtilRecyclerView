@@ -8,13 +8,17 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ao.diffutiladapter.adapter.FooterAdapter
+import com.ao.diffutiladapter.adapter.UserAdapter
 import com.ao.diffutiladapter.databinding.ActivityMainBinding
+import com.ao.diffutiladapter.vm.MainVM
 
 class MainActivity : AppCompatActivity() {
 
     private val vm by viewModels<MainVM>()
     private val userAdapter = UserAdapter()
-    private val footerAdapter = FooterAdapter(this::onRetry)
+    private val footerAdapter =
+        FooterAdapter(this::onRetry)
 
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityMainBinding.inflate(layoutInflater)

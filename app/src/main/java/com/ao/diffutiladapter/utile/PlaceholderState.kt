@@ -1,4 +1,4 @@
-package com.ao.diffutiladapter
+package com.ao.diffutiladapter.utile
 
 sealed class PlaceholderState {
     object Idle : PlaceholderState()
